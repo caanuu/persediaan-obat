@@ -1,15 +1,12 @@
-
-
 <?php
-/* panggil file database.php untuk koneksi ke database */
+
 require_once "config/database.php";
-/* panggil file fungsi tambahan */
 require_once "config/fungsi_tanggal.php";
 require_once "config/fungsi_rupiah.php";
 
-// fungsi untuk pengecekan status login user 
-// jika user belum login, alihkan ke halaman login dan tampilkan message = 1
-if (empty($_SESSION['username']) && empty($_SESSION['password'])){
+// panggil fungsi untuk mengecek status login user 
+// jika user belum login, alihkan ke halaman login dan tampilkan pesan = 1
+if (empty($_SESSION['username']) && empty($_SESSION['password'])) {
 	echo "<meta http-equiv='refresh' content='0; url=index.php?alert=1'>";
 }
 // jika user sudah login, maka jalankan perintah untuk pemanggilan file halaman konten
@@ -28,7 +25,6 @@ else {
 	elseif ($_GET['module'] == 'form_obat') {
 		include "modules/obat/form.php";
 	}
-	// -----------------------------------------------------------------------------
 
 	// jika halaman konten yang dipilih obat masuk, panggil file view obat masuk
 	elseif ($_GET['module'] == 'obat_masuk') {
@@ -39,19 +35,24 @@ else {
 	elseif ($_GET['module'] == 'form_obat_masuk') {
 		include "modules/obat-masuk/form.php";
 	}
+
+	// -----------------------------------------------------------------------------
+	// BAGIAN BARU: ROUTING UNTUK PREDIKSI
+	// -----------------------------------------------------------------------------
+	elseif ($_GET['module'] == 'prediksi') {
+		include "modules/prediksi/view.php";
+	}
 	// -----------------------------------------------------------------------------
 
 	// jika halaman konten yang dipilih laporan stok, panggil file view laporan stok
 	elseif ($_GET['module'] == 'lap_stok') {
 		include "modules/lap-stok/view.php";
 	}
-	// -----------------------------------------------------------------------------
 
 	// jika halaman konten yang dipilih laporan obat masuk, panggil file view laporan obat masuk
 	elseif ($_GET['module'] == 'lap_obat_masuk') {
 		include "modules/lap-obat-masuk/view.php";
 	}
-	// -----------------------------------------------------------------------------
 
 	// jika halaman konten yang dipilih user, panggil file view user
 	elseif ($_GET['module'] == 'user') {
@@ -62,7 +63,6 @@ else {
 	elseif ($_GET['module'] == 'form_user') {
 		include "modules/user/form.php";
 	}
-	// -----------------------------------------------------------------------------
 
 	// jika halaman konten yang dipilih profil, panggil file view profil
 	elseif ($_GET['module'] == 'profil') {
@@ -73,8 +73,7 @@ else {
 	elseif ($_GET['module'] == 'form_profil') {
 		include "modules/profil/form.php";
 	}
-	// -----------------------------------------------------------------------------
-	
+
 	// jika halaman konten yang dipilih password, panggil file view password
 	elseif ($_GET['module'] == 'password') {
 		include "modules/password/view.php";
